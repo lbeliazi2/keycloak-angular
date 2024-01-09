@@ -7,10 +7,10 @@ import {AuthService} from "./auth.service";
   providedIn: 'root',
 })
 export class AppAuthGuardService extends KeycloakAuthGuard {
-  constructor(protected router: Router,
-              protected keycloakAngular: KeycloakService,
+  constructor(protected route: Router,
+              private keycloakService: KeycloakService,
               protected authService: AuthService) {
-    super(router, keycloakAngular);
+    super(route, keycloakService);
   }
 
   isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
@@ -19,9 +19,9 @@ export class AppAuthGuardService extends KeycloakAuthGuard {
         await this.authService.login();
         return;
       }
-      console.log('role restriction given at app-routing.module for this route', route.data.roles);
+      console.log('role restriction given at app-routing.module for this route', route.data["roles"]);
       console.log('User roles coming after login from keycloak:', this.roles);
-      const requiredRoles = route.data.roles;
+      const requiredRoles = route.data["roles"];
       let granted: boolean = false;
       if (!requiredRoles || requiredRoles.length == 0) {
         granted = true;

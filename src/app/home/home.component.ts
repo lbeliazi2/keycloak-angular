@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/service/auth.service";
 import {KeycloakUser} from "../auth/model/keycloakUser";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   protected user: KeycloakUser = new KeycloakUser();
   protected token: string | undefined;
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
   tokenVisible = false;
   private isLoggedIn: boolean = false;
 
-  constructor(protected authService: AuthService) {
+  constructor(protected authService: AuthService,
+              protected router: Router) {
   }
 
   public async ngOnInit(): Promise<void> {
@@ -40,4 +42,7 @@ export class HeaderComponent implements OnInit {
     this.userDetailsVisible = false;
   }
 
+  navigateToOtherPage() {
+    this.router.navigate(['other']);
+  }
 }

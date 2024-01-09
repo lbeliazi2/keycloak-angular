@@ -7,12 +7,14 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
 import {initializeKeycloak} from "./utils/keycloak-initiliazer";
-import {HeaderComponent} from './header/header.component';
+import {HomeComponent} from './home/home.component';
+import {OtherPageComponent} from "./other-page/other-page.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HomeComponent,
+    OtherPageComponent
   ],
   imports: [
     BrowserModule,

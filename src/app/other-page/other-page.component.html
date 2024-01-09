@@ -1,0 +1,23 @@
+<h1>Going on another page</h1>
+<p>You can see that with the auth gard service, the session even when the user is switching pages.
+  While switching to this page, we have verified that the user has the specific role 'User'
+  The redirection was successful, meaning that the verification of the role has worked.
+  If you decrypt the token, you will be able to see which roles are associated to this user.</p>
+
+<div class="buttons">
+  <button (click)="showUserDetails()">Show User Details</button>
+  <button (click)="showToken()">Show Token</button>
+  <button (click)="logout()">Logout</button>
+  <button (click)="goBackToHome()">Go back to the main page</button>
+</div>
+
+<div *ngIf="userDetailsVisible">
+  <h2>User Details</h2>
+  <pre>{{ this.user | json }}</pre>
+</div>
+
+<div *ngIf="tokenVisible">
+  <h2>Token</h2>
+  <pre>{{ this.token }}</pre>
+</div>
+
