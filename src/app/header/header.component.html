@@ -1,13 +1,22 @@
-<div class="header">
-  <div class="row">
-    <div class="col-md-8">
-      <h1 style="text-align: center;">Implementing Keycloak on an Angular App</h1>
-    </div>
-    <div class="col-md-2">
-      <h4><a href="#" (click)="showUserDetails()">show user details</a></h4>
-    </div>
-    <div class="col-md-2">
-      <h4><a href="#" (click)="logout()">Logout</a></h4>
-    </div>
-  </div>
+<h1>Keycloak Example</h1>
+<p>Keycloak is a user management tool, which allows you to handle user details, logins, logouts and verification of the
+  token.
+  You will see in this small tutorial, that once you have configured correctly keycloak, you are able to get the user
+  data and the token generated.
+  Going through this code, you will be able to see how to do this in Angular.</p>
+
+<div class="buttons">
+  <button (click)="showUserDetails()">Show User Details</button>
+  <button (click)="showToken()">Show Token</button>
 </div>
+
+<div *ngIf="userDetailsVisible">
+  <h2>User Details</h2>
+  <pre>{{ this.user | json }}</pre>
+</div>
+
+<div *ngIf="tokenVisible">
+  <h2>Token</h2>
+  <pre>{{ this.token }}</pre>
+</div>
+

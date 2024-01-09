@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../auth/service/auth.service";
 import {KeycloakUser} from "../auth/model/keycloakUser";
 
@@ -10,11 +9,14 @@ import {KeycloakUser} from "../auth/model/keycloakUser";
 })
 export class HeaderComponent implements OnInit {
 
-  private user: KeycloakUser = new KeycloakUser();
-  private token: string | undefined;
+  protected user: KeycloakUser = new KeycloakUser();
+  protected token: string | undefined;
+  userDetailsVisible = false;
+  tokenVisible = false;
   private isLoggedIn: boolean = false;
-  constructor(private route: ActivatedRoute,
-              private router: Router, protected authService: AuthService) { }
+
+  constructor(protected authService: AuthService) {
+  }
 
   public async ngOnInit(): Promise<void> {
     this.isLoggedIn = await this.authService.isLoggedIn();
@@ -29,8 +31,13 @@ export class HeaderComponent implements OnInit {
   }
 
   showUserDetails() {
-    console.log(this.user);
-    console.log(this.token);
+    this.userDetailsVisible = true;
+    this.tokenVisible = false;
+  }
+
+  showToken() {
+    this.tokenVisible = true;
+    this.userDetailsVisible = false;
   }
 
 }

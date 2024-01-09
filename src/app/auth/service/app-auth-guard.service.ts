@@ -1,6 +1,5 @@
 import {KeycloakAuthGuard, KeycloakService} from "keycloak-angular";
 import {Injectable} from "@angular/core";
-import {KeycloakUser} from "../model/keycloakUser";
 import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from "@angular/router";
 import {AuthService} from "./auth.service";
 
