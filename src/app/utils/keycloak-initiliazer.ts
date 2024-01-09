@@ -30,9 +30,10 @@ export function initializeKeycloak(keycloakService: KeycloakService) {
       try {
         await keycloakService.init(
           keycloakOptions);
+        console.log('Keycloak initialized correctly');
         resolve(resolve);
       } catch (error) {
-        console.log(error);
+        console.log('Error initializing keycloak' + error);
         reject(error);
       }
     });

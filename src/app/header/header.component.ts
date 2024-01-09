@@ -12,12 +12,16 @@ export class HeaderComponent implements OnInit {
 
   private user: KeycloakUser = new KeycloakUser();
   private token: string | undefined;
+  private isLoggedIn: boolean = false;
   constructor(private route: ActivatedRoute,
               private router: Router, protected authService: AuthService) { }
 
   public async ngOnInit(): Promise<void> {
-    this.user = await this.authService.loadProfile();
-    this.token = await this.authService.getToken();
+    this.isLoggedIn = await this.authService.isLoggedIn();
+    if (this.isLoggedIn) {
+      this.user = await this.authService.loadProfile();
+      this.token = await this.authService.getToken();
+    }
   }
 
   logout() {
